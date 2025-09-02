@@ -1,11 +1,10 @@
-dist/build-stats.json
-node_modules
-.cache
-.env
+dist/
+node_modules/
+.cache/
 src/lib/gramjs/build/
 build-contest/
 tests/
-.idea
+.idea/
 *.iml
 dev/perf/screenshot*
 .DS_store
