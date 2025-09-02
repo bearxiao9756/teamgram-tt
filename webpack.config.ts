@@ -40,8 +40,8 @@ const {
 
 const CSP = `
   default-src 'self';
-  connect-src 'self' ws://127.0.0.1:11443 wss://*.web.teamgram.net blob: http: https: ${APP_ENV === 'development' ? 'wss:' : ''};
-  script-src 'self' 'wasm-unsafe-eval' http://127.0.0.1:1234/ https://teamgram.net https://teamgram.me/_websync_;
+  connect-src 'self' ws://43.160.199.241:11443 wss://*.web.teamgram.net blob: http: https: ${APP_ENV === 'development' ? 'wss:' : ''};
+  script-src 'self' 'wasm-unsafe-eval' http://127.0.0.1:54321 https://teamgram.net https://teamgram.me/_websync_;
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob: https://ss3.4sqi.net/img/categories_v2/
   ${IS_PACKAGED_ELECTRON ? `${BASE_URL}/` : ''};
@@ -62,10 +62,10 @@ export default function createConfig(
     target: 'web',
 
     devServer: {
-      port: 1234,
+      port: 54321,
       host: '0.0.0.0',
       allowedHosts: 'all',
-      hot: false,
+      hot: true,
       static: [
         {
           directory: path.resolve(__dirname, 'public'),
@@ -94,6 +94,7 @@ export default function createConfig(
       },
       headers: {
         'Content-Security-Policy': CSP,
+        'Access-Control-Allow-Origin': '*',     
       },
     },
 

@@ -42,7 +42,11 @@ type StateProps = Pick<GlobalState, (
 const MIN_NUMBER_LENGTH = 7;
 
 let isPreloadInitiated = false;
-
+const defaultMockPhoneCodes: ApiCountryCode[] = [
+  { iso2: 'CN', countryCode: '86', name: 'China', defaultName: '中国', prefixes: ['13','14','15','16','17','18','19'], patterns: ["^1[3-9]\\d{9}$"], isHidden: false },
+  { iso2: 'US', countryCode: '1', name: '美国', defaultName: 'United States', prefixes: ['201','202','212','213'], patterns: [], isHidden: false },
+  { iso2: 'GB', countryCode: '44', name: '英国', defaultName: 'United Kingdom', prefixes: ['20','23','24','29'], patterns: [], isHidden: false },
+];
 const AuthPhoneNumber: FC<StateProps> = ({
   connectionState,
   authState,
@@ -72,7 +76,12 @@ const AuthPhoneNumber: FC<StateProps> = ({
 
   const isConnected = connectionState === 'connectionStateReady';
   const continueText = useLangString('AuthContinueOnThisLanguage', suggestedLanguage);
-  const [country, setCountry] = useState<ApiCountryCode | undefined>();
+  // const [country, setCountry] = useState<ApiCountryCode | undefined>();
+  const [country, setCountry] = useState<ApiCountryCode>(
+    phoneCodeList && phoneCodeList.length
+      ? phoneCodeList[0]
+      : defaultMockPhoneCodes[0]
+  );
   const [phoneNumber, setPhoneNumber] = useState<string | undefined>();
   const [isTouched, setIsTouched] = useState(false);
   const [lastSelection, setLastSelection] = useState<[number, number] | undefined>();
@@ -95,6 +104,7 @@ const AuthPhoneNumber: FC<StateProps> = ({
 
   useEffect(() => {
     if (isConnected) {
+      console.log('a');
       loadCountryList({ langCode: language });
     }
   }, [isConnected, language]);
@@ -103,6 +113,7 @@ const AuthPhoneNumber: FC<StateProps> = ({
     if (authNearestCountry && phoneCodeList && !country && !isTouched) {
       setCountry(getCountryCodesByIso(phoneCodeList, authNearestCountry)[0]);
     }
+     console.log('b');
   }, [country, authNearestCountry, isTouched, phoneCodeList]);
 
   const parseFullNumber = useCallback((newFullNumber: string) => {
@@ -266,7 +277,12 @@ export default memo(withGlobal(
       settings: { byKey: { language } },
       countryList: { phoneCodes: phoneCodeList },
     } = global;
-
+    // 如果 phoneCodes 为空，使用默认 mock 数据
+    const defaultMockPhoneCodes: ApiCountryCode[] = [
+      { iso2: 'CN', countryCode: '86', name: 'China', defaultName: '中国', prefixes: ['13','14','15','16','17','18','19'], patterns: [], isHidden: false },
+      { iso2: 'US', countryCode: '1', name: '美国', defaultName: 'United States', prefixes: ['201','202','212','213'], patterns: [], isHidden: false },
+      { iso2: 'GB', countryCode: '44', name: '英国', defaultName: 'United Kingdom', prefixes: ['20','23','24','29'], patterns: [], isHidden: false },
+    ];
     return {
       ...pick(global, [
         'connectionState',
@@ -279,7 +295,8 @@ export default memo(withGlobal(
         'authNearestCountry',
       ]),
       language,
-      phoneCodeList,
+      // phoneCodeList,
+      phoneCodeList: phoneCodeList && phoneCodeList.length ? phoneCodeList : defaultMockPhoneCodes,
     };
   },
 )(AuthPhoneNumber));

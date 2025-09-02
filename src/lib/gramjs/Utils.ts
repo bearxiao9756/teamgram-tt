@@ -204,9 +204,10 @@ export function getDC(dcId: number, downloadDC = false) {
         case 1:
             return {
                 id: 1,
-                ipAddress: `web.teamgram.net`,
+                // ipAddress: `web.teamgram.net`,
+                ipAddress:`43.160.199.241`,
                 // ipAddress: `127.0.0.1`,
-                port: 443,
+                port: 5222,
             };
         default:
             throw new Error(`Cannot find the DC with the ID of ${dcId}`);

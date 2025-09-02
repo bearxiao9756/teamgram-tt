@@ -77,10 +77,13 @@ export default class PromisedWebSockets {
     }
 
     getWebSocketLink(ip: string, port: number, isTestServer?: boolean, isPremium?: boolean) {
+        console.log(`1ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
         if (port === 443) {
-            return `wss://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            // return `wss://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+             return `ws://43.160.199.241:11443/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
         } else {
-            return `ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            // return `ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            return `ws://43.160.199.241:11443/apiws${isTestServer ? '_test' : ''}${isPremium ? '' : ''}`;
         }
     }
 
@@ -91,6 +94,9 @@ export default class PromisedWebSockets {
         });
         this.closed = false;
         this.website = this.getWebSocketLink(ip, port, isTestServer, isPremium);
+        console.log(1)
+        console.log(this.website)
+        console.log(2)
         this.client = new WebSocket(this.website, 'binary');
         return new Promise((resolve, reject) => {
             if (!this.client) return;
