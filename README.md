@@ -1,0 +1,81 @@
+# 吴查理运行记录
+
+确定服务器部署后
+
+## 依赖安装
+
+node 版本 v22.13.0 +
+```
+node -v
+```
+npm 版本 10.9.2 +
+```
+npm -v
+```
+安装命令
+```
+npm install  --legacy-peer-deeps
+```
+
+
+## 运行命令
+
+```
+npm run dev
+```
+
+
+##  更改为线上环境验证是否成功
+
+修改文件 1 ：config.ts
+修改内容：PRODUCTION_HOSTNAME  缓存自己的域名 
+```
+export const PRODUCTION_HOSTNAME = '43.160.166.241';
+
+```
+修改文件 2： gramejs\Utils 
+修改内容：端口修改和IP地址 
+```
+ipAddress:`43.160.199.241`,
+port: 5222,
+```
+修改文件 3： HttpStream.ts
+修改内容：ws 链接修改
+修改文件位置：
+```
+   static getURL(ip: string, port: number, isTestServer?: boolean, isPremium?: boolean) {
+        if (port === 443) {
+            console.log(`http://43.160.199.241:11443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
+            return `http://43.160.199.241:11443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            // return `http://127.0.0.1:8801/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+        } else {
+            console.log(`http://43.160.199.241:10443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
+            return `http://43.160.199.241:10443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+        }
+    }
+```
+修改文件 4：PromisedWebSockets
+修改文件内容:WS 端口修改
+修改文件位置：src\lib\gramjs\extensions\PromisedWebSockets.ts
+```
+    getWebSocketLink(ip: string, port: number, isTestServer?: boolean, isPremium?: boolean) {
+        console.log(`1ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
+        if (port === 443) {
+            // return `wss://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+             return `ws://43.160.199.241:11443/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+        } else {
+            // return `ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            return `ws://43.160.199.241:11443/apiws${isTestServer ? '_test' : ''}${isPremium ? '' : ''}`;
+        }
+    }
+```
+修改文件 5:webpack.config.ts
+修改文件内容: CSP 跨域
+修改文件位置：webpack.config.ts
+```
+  connect-src 'self' ws://43.160.199.241:11443 wss://*.web.teamgram.net blob: http: https: ${APP_ENV === 'development' ? 'wss:' : ''};
+  script-src 'self' 'wasm-unsafe-eval' http://127.0.0.1:54321 https://teamgram.net https://teamgram.me/_websync_;
+  
+  'Access-Control-Allow-Origin': '*',     
+
+```

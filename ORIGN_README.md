@@ -128,3 +128,6 @@ Publish configuration in `src/electron/config.yml` config file allows to set Git
 
 ## Bug reports and Suggestions
 If you find an issue with this app, let Telegram know using the [Suggestions Platform](https://bugs.telegram.org/c/4002).
+
+
+
