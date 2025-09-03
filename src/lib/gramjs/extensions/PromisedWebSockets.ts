@@ -80,10 +80,10 @@ export default class PromisedWebSockets {
         console.log(`1ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
         if (port === 443) {
             // return `wss://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
-             return `ws://43.160.199.241:11443/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+             return `ws://43.160.199.241:54321/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
         } else {
             // return `ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
-            return `ws://43.160.199.241:11443/apiws${isTestServer ? '_test' : ''}${isPremium ? '' : ''}`;
+            return `ws://43.160.199.241:54321/apiws${isTestServer ? '_test' : ''}${isPremium ? '' : ''}`;
         }
     }
 

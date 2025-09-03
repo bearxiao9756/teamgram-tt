@@ -57,11 +57,11 @@ export default class HttpStream {
     static getURL(ip: string, port: number, isTestServer?: boolean, isPremium?: boolean) {
         if (port === 443) {
             console.log(`http://43.160.199.241:11443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
-            return `http://43.160.199.241:11443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            return `http://43.160.199.241:54321/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
             // return `http://127.0.0.1:8801/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
         } else {
             console.log(`http://43.160.199.241:10443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
-            return `http://43.160.199.241:10443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            return `http://43.160.199.241:54321/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
         }
     }
 
