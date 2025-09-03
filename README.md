@@ -1,5 +1,7 @@
+
 # 吴查理运行记录
 
+[原始文档说明](./ORIGN_README.md)
 确定服务器部署后
 
 ## 依赖安装
@@ -69,7 +71,7 @@ port: 5222,
         }
     }
 ```
-修改文件 5:webpack.config.ts
+修改文件 5: webpack.config.ts
 修改文件内容: CSP 跨域
 修改文件位置：webpack.config.ts
 ```
@@ -77,5 +79,24 @@ port: 5222,
   script-src 'self' 'wasm-unsafe-eval' http://127.0.0.1:54321 https://teamgram.net https://teamgram.me/_websync_;
   
   'Access-Control-Allow-Origin': '*',     
+
+```
+
+修改文件 6： AuthPhoneNumber.tsx
+修改文件内容： 增加默认选中区号，保证业务畅通
+修改文件位置：src\components\auth\AuthPhoneNumber.tsx
+```
+const defaultMockPhoneCodes: ApiCountryCode[] = [
+  { iso2: 'CN', countryCode: '86', name: 'China', defaultName: '中国', prefixes: ['13','14','15','16','17','18','19'], patterns: ["^1[3-9]\\d{9}$"], isHidden: false },
+  { iso2: 'US', countryCode: '1', name: '美国', defaultName: 'United States', prefixes: ['201','202','212','213'], patterns: [], isHidden: false },
+  { iso2: 'GB', countryCode: '44', name: '英国', defaultName: 'United Kingdom', prefixes: ['20','23','24','29'], patterns: [], isHidden: false },
+];
+
+
+const [country, setCountry] = useState<ApiCountryCode>(
+    phoneCodeList && phoneCodeList.length
+      ? phoneCodeList[0]
+      : defaultMockPhoneCodes[0]
+);
 
 ```
