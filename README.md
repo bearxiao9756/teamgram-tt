@@ -100,3 +100,15 @@ const [country, setCountry] = useState<ApiCountryCode>(
 );
 
 ```
+
+
+## Docker 部署
+
+制作镜像
+```
+docker build -t teamgram-tt-web .
+```
+启动镜像
+```
+docker run -d -p 54321:80 --name teamgram-tt-web teamgram-tt-web
+```
