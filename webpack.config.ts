@@ -40,7 +40,7 @@ const {
 
 const CSP = `
   default-src 'self';
-  connect-src 'self' ws://43.160.199.241:11443 wss://*.web.teamgram.net blob: http: https: ${APP_ENV === 'development' ? 'wss:' : ''};
+  connect-src 'self' ws://webim.customgoodservice.icu:11443 wss://*.webim.customgoodservice.icu blob: http: https: ${APP_ENV === 'development' ? 'wss:' : ''};
   script-src 'self' 'wasm-unsafe-eval' http://127.0.0.1:54321 https://teamgram.net https://teamgram.me/_websync_;
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob: https://ss3.4sqi.net/img/categories_v2/

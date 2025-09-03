@@ -9,9 +9,9 @@ export const APP_CODE_NAME = 'A';
 export const APP_NAME = process.env.APP_NAME || `Teamgram Web ${APP_CODE_NAME}`;
 export const RELEASE_DATETIME = process.env.RELEASE_DATETIME;
 
-export const PRODUCTION_HOSTNAME = '43.160.166.241';
-export const PRODUCTION_URL = 'https://web.teamgram.net/a';
-export const WEB_VERSION_BASE = 'https://web.teamgram.net/'; // Used to redirect to other versions
+export const PRODUCTION_HOSTNAME = 'webim.customgoodservice.icu';
+export const PRODUCTION_URL = 'https://webim.customgoodservice.icu/a';
+export const WEB_VERSION_BASE = 'https://webim.customgoodservice.icu/'; // Used to redirect to other versions
 export const BASE_URL = process.env.BASE_URL;
 
 export const IS_MOCKED_CLIENT = process.env.APP_MOCKED_CLIENT === '1';

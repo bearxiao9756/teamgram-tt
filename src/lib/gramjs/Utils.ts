@@ -204,8 +204,8 @@ export function getDC(dcId: number, downloadDC = false) {
         case 1:
             return {
                 id: 1,
-                // ipAddress: `web.teamgram.net`,
-                ipAddress:`43.160.199.241`,
+                // ipAddress: `webim.customgoodservice.icu`,
+                ipAddress:`webim.customgoodservice.icu`,
                 // ipAddress: `127.0.0.1`,
                 port: 5222,
             };

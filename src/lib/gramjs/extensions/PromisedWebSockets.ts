@@ -79,11 +79,11 @@ export default class PromisedWebSockets {
     getWebSocketLink(ip: string, port: number, isTestServer?: boolean, isPremium?: boolean) {
         console.log(`1ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
         if (port === 443) {
-            // return `wss://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
-             return `ws://43.160.199.241:54321/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            return `wss://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            //  return `ws://webim.customgoodservice.icu:54321/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
         } else {
-            // return `ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
-            return `ws://43.160.199.241:54321/apiws${isTestServer ? '_test' : ''}${isPremium ? '' : ''}`;
+            return `ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            // return `ws://webim.customgoodservice.icu:54321/apiws${isTestServer ? '_test' : ''}${isPremium ? '' : ''}`;
         }
     }
 

@@ -38,7 +38,7 @@ export const PRODUCTION_HOSTNAME = '43.160.166.241';
 修改文件 2： gramejs\Utils 
 修改内容：端口修改和IP地址 
 ```
-ipAddress:`43.160.199.241`,
+ipAddress:`webim.customgoodservice.icu`,
 port: 5222,
 ```
 修改文件 3： HttpStream.ts
@@ -47,12 +47,12 @@ port: 5222,
 ```
    static getURL(ip: string, port: number, isTestServer?: boolean, isPremium?: boolean) {
         if (port === 443) {
-            console.log(`http://43.160.199.241:11443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
-            return `http://43.160.199.241:11443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            console.log(`http://webim.customgoodservice.icu:11443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
+            return `http://webim.customgoodservice.icu:11443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
             // return `http://127.0.0.1:8801/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
         } else {
-            console.log(`http://43.160.199.241:10443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
-            return `http://43.160.199.241:10443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            console.log(`http://webim.customgoodservice.icu:10443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
+            return `http://webim.customgoodservice.icu:10443/apiw1${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
         }
     }
 ```
@@ -64,10 +64,10 @@ port: 5222,
         console.log(`1ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`)
         if (port === 443) {
             // return `wss://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
-             return `ws://43.160.199.241:11443/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+             return `ws://webim.customgoodservice.icu:11443/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
         } else {
             // return `ws://${ip}:${port}/apiws${isTestServer ? '_test' : ''}${isPremium ? '_premium' : ''}`;
-            return `ws://43.160.199.241:11443/apiws${isTestServer ? '_test' : ''}${isPremium ? '' : ''}`;
+            return `ws://webim.customgoodservice.icu:11443/apiws${isTestServer ? '_test' : ''}${isPremium ? '' : ''}`;
         }
     }
 ```
@@ -75,7 +75,7 @@ port: 5222,
 修改文件内容: CSP 跨域
 修改文件位置：webpack.config.ts
 ```
-  connect-src 'self' ws://43.160.199.241:11443 wss://*.web.teamgram.net blob: http: https: ${APP_ENV === 'development' ? 'wss:' : ''};
+  connect-src 'self' ws://webim.customgoodservice.icu:11443 wss://*.webim.customgoodservice.icu blob: http: https: ${APP_ENV === 'development' ? 'wss:' : ''};
   script-src 'self' 'wasm-unsafe-eval' http://127.0.0.1:54321 https://teamgram.net https://teamgram.me/_websync_;
   
   'Access-Control-Allow-Origin': '*',     
